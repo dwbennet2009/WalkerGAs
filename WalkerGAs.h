@@ -129,15 +129,6 @@ class WalkerGAs : public Test
 
 	public:
 
-        b2RevoluteJoint* jLeftFrontLeg;
-        b2RevoluteJoint* jLeftFrontHip;
-        b2RevoluteJoint* jLeftBackLeg;
-        b2RevoluteJoint* jLeftBackHip;
-        b2RevoluteJoint* jRightFrontLeg;
-        b2RevoluteJoint* jRightFrontHip;
-        b2RevoluteJoint* jRightBackLeg;
-        b2RevoluteJoint* jRightBackHip;
-
 	SegmentHex segLoBL, segLoBR, segUpBL, segUpBR;
 	SegmentHex segLoFL, segLoFR, segUpFL, segUpFR;
 	SegmentHex segBody;
@@ -181,12 +172,13 @@ class WalkerGAs : public Test
 	legShape.Set(legV,6);
 	bodyShape.Set(bodyV,6);
 
-
-	//void SegmentHex::initialize(double posX, double posY, b2PolygonShape shape, int catBits, int maskBits)
-
 	b2FixtureDef myFixDef;
 	b2BodyDef myBodyDef;
 
+	//void SegmentHex::initialize(double posX, double posY, b2PolygonShape shape, int catBits, int maskBits)
+
+
+	//Create Segments
 
 	//Lower Right Front Leg
 	segLoFR.initialize(10, 5, legShape, RIGHT, RIGHT | EDGE | BODY);
@@ -223,7 +215,8 @@ class WalkerGAs : public Test
 	segBody.initialize(5, 30, bodyShape, BODY, LEFT | RIGHT | EDGE | BODY);
 	segBody.create(m_world);
 
-	
+	//Create Joints	
+
 	//Joints
 	segUpFL.addJoint(segLoFL.getBody(), -3.5, 0, 3.5, 0, 0, m_world);
 	segBody.addJoint(segUpFL.getBody(), 4, 0, 3.5, 0, -60, m_world);
